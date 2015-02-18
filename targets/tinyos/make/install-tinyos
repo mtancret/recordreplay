@@ -1,0 +1,7 @@
+#!/bin/bash
+
+NODE_ID=$1
+
+make-tinyos
+reinstall-tinyos $NODE_ID
+

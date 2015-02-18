@@ -1,0 +1,12 @@
+#!/bin/bash
+
+NODE_ID=$1
+
+#PLATFORM=z1
+PLATFORM=telosb
+
+tos-set-symbols --objcopy msp430-objcopy --objdump msp430-objdump\
+	--target ihex build/$PLATFORM/main-cil.ihex build/$PLATFORM/main-cil-$NODE_ID.ihex\
+	TOS_NODE_ID=$NODE_ID 'ActiveMessageAddressC$addr'=$NODE_ID
+
+tos-bsl --$PLATFORM -c $MOTEDEV -r -e -I -p build/$PLATFORM/main-cil-$NODE_ID.ihex

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#PLATFORM=z1
+PLATFORM=telosb
+BUILD_DIR=build/$PLATFORM
+LOG_FILE=$BUILD_DIR/log.out
+
+rm -f $BUILD_DIR/app.c
+rm -f $BUILD_DIR/a.cil.c
+rm -f $BUILD_DIR/*.exe
+rm -f $BUILD_DIR/*.ihex
+rm -f $BUILD_DIR/*.i
+rm -f $BUILD_DIR/*.o
+mkdir -p $BUILD_DIR
+
+make $PLATFORM
+echo "ATTENTION: errors up to this point are expected because nesc compiler does not have access to tscribe files, need to fix this. If no errors beyond this point in the make process then you are fine. Check $LOG_FILE for error messages."
+
+SOURCES+=" $TSCRIBE/targets/common/tscribe-clock.c"
+SOURCES+=" $TSCRIBE/targets/common/tscribe-flash.c"
+SOURCES+=" $TSCRIBE/targets/common/tscribe-bit-pack.c"
+SOURCES+=" $TSCRIBE/targets/common/tscribe-ega-codebook.c"
+SOURCES+=" $TSCRIBE/targets/common/tscribe-lzrw.c"
+SOURCES+=" $TSCRIBE/targets/common/tscribe.c"
+SOURCES+=" $BUILD_DIR/app.c"
+
+Z1_FLAGS="-B/usr/local/lib/ncc -mmcu=msp430f2617 -mcpu=430x -mmpy=16se -mivcnt=32 -Os -Wall -Wshadow -v"
+TELOSB_FLAGS="-mmcu=msp430f1611 -mcpu=430 -mmpy=16 -mivcnt=16 -Os -Wall -Wshadow -v"
+CFLAGS=$TELOSB_FLAGS
+
+cilly --mode=GNUCC --tscribe --gcc=msp430-gcc --merge --save-temps=$BUILD_DIR --verbose $CFLAGS -g -Wa,-alh=$BUILD_DIR/as.out -Wl,-M=$BUILD_DIR/ld.out -Wl,-S -o $BUILD_DIR/main-cil.exe $SOURCES >>$LOG_FILE 2>&1
+# --envmachine
+
+mv build/code-map.out $BUILD_DIR/code-map.out
+msp430-objdump -d $BUILD_DIR/main-cil.exe > $BUILD_DIR/objdump.out
+msp430-size $BUILD_DIR/main-cil.exe
+msp430-objcopy --output-target=ihex $BUILD_DIR/main-cil.exe $BUILD_DIR/main-cil.ihex 
+make-map.py $BUILD_DIR
+
+#ciltscribecc --mode=GNUCC --save-temps=$BUILD_DIR --trace --merge --gcc=msp430-gcc -mmcu=msp430f1611 -mcpu=430 -mmpy=16 $SOURCES &> $LOG_FILE
+#mv $BUILD_DIR/a.cil.c $BUILD_DIR/app.cil.c
+# CIL doesn't seem to be calling msp430-gcc correctly so we call it ourselfs.
+#msp430-gcc $CFLAGS -Wl,-M=ld.out -Wl,-S -Wa,-alh=as.out -g -o $BUILD_DIR/main-cil.exe $BUILD_DIR/app.cil.c >>$LOG_FILE 2>&1
+#msp430-gcc -mmcu=msp430f1611 -mcpu=430 -mmpy=16 -mivcnt=16 -Os -Wall -Wshadow -v -o build/telosb/main-cil.exe build/telosb/app.c
+# Do not put dubug information into output -Wl,-S 
+#msp430-gcc $CFLAGS -g -Wa,-alh=$BUILD_DIR/as.out -Wl,-M=$BUILD_DIR/ld.out -Wl,-S -o $BUILD_DIR/main-cil.exe $BUILD_DIR/a.cil.c >>$LOG_FILE 2>&1
+
