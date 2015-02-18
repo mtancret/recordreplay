@@ -19,22 +19,28 @@ Usage
 ----------
 
 Set up paths using the setup.sh script.
+
 > source setup.sh
 
 Compile an example TinyOS application (requires TinyOS to be installed and configured).
+
 > cd targets/tinyos/examples/Blink  
 > make-tinyos  
+
 It is normal to see "collect2: ld returned 1 exit status"
 Check the compile log file build/telosb/make\_tscribe.out for errors.
 
 Program the mote, MOTEDEV needs to be set to the mote's device location.
+
 > export MOTEDEV=/dev/tty.usbserial-XBTLWQL1  
 > install-tinyos  
 
 To enter command mode press and release the reset button while holding down the user button.
 Now press and release the user button again to dump the contents of flash to the serial port.
 To capture the contents of flash run collect.py before pressing the user button.
+
 > collect.py  
+
 Press and release the user button two more times to clear the flash.
 Exit command mode at any time by pressing reset.
 
@@ -51,8 +57,10 @@ emulator - Modifed version of mspsim.
 targets - Code that is compiled into the target OS.  
 > common - Code that is used across all OSs.  
 > tinyos - TinyOS target specific code.  
+
 > > examples - Example TinyOS apps used for testing.  
 > > make - Scripts used to compile applications.  
+
 tools - Collection of usefull scripts for collecting and analysing data.  
 transpiler - Coverts C code into record instrumented code.  
 setup.sh - Script to set up environment.  
