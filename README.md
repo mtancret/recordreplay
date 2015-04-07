@@ -8,6 +8,11 @@ TARDIS: Software-Only System-Level Record and Replay in Wireless Sensor Networks
 To appear in the 14th International Conference on Information Processing in Sensor Networks (IPSN).
 ACM, 2015.
 
+License
+----------
+
+The files in this repository are provided as is, for non-commercial purposes only.
+
 Prerequisites
 ----------
 
