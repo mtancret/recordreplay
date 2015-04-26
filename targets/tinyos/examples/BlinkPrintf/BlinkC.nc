@@ -100,7 +100,6 @@ void readadc() __attribute__((C)) {
 
     dbg("BlinkC", "Timer 2 fired @ %s.\n", sim_time_string());
     if (++count == 30) {
-      printf("30 sec total %ld state %ld timer %ld gen %ld int %ld\n", TOTAL_COUNT, TOTAL_STATE_COUNT, TOTAL_TIMER_COUNT, TOTAL_GENERAL_COUNT, TOTAL_INT_COUNT);
       tscribe_flush_state();
     }
     call Leds.led2Toggle();
