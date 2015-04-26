@@ -300,6 +300,33 @@ tscribe_buf_to_flash_immediate(
 	//tscribe_flash_state = FLASH_WIP;
 }
 
+/* Used for testing flash write speed */
+void
+tscribe_write_test_flash (void) {
+	unsigned char *flash_read_buf = TSCRIBE_BUF(int);
+	unsigned long addr;
+	unsigned c;
+
+	putchar('s');
+	tscribe_max_dco();
+
+	for (addr=TSCRIBE_FLASH_START; addr<TSCRIBE_FLASH_START+10000; addr+=TSCRIBE_FLASH_PAGE_SIZE) {
+		while (tscribe_read_status_register());
+		tscribe_flash_program_page(
+			addr,
+			flash_read_buf,
+			flash_read_buf + TSCRIBE_FLASH_PAGE_SIZE - 2,
+			0, 0, 0);
+	}
+
+	tscribe_restore_dco();
+	putchar('e');
+	putchar('\r');
+	putchar('\n');
+
+	while(true);
+}
+
 void
 tscribe_print_flash (void) {
 	unsigned char *flash_read_buf = TSCRIBE_BUF(int);
@@ -351,6 +378,7 @@ tscribe_button_pressed(void) {
 			TSCRIBE_LED_OFF(TSCRIBE_BLUE_LED);
 
 			tscribe_flash_erase(TSCRIBE_FLASH_SIZE, 0);
+			//tscribe_write_test_flash();
 
 			TSCRIBE_LED_OFF(TSCRIBE_RED_LED);
 			TSCRIBE_LED_ON(TSCRIBE_GREEN_LED);

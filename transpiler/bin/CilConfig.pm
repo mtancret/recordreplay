@@ -1,6 +1,6 @@
 
-$::archos    = "x86_DARWIN";
+$::archos    = $ENV{'HOST_OS'};
 $::cc        = "gcc";
-$::cilhome   = "/Users/mtancret/Projects/tinyScribe-git/transpiler";
+$::cilhome   = $ENV{'CIL_HOME'};
 $::default_mode = "GNUCC";
 
