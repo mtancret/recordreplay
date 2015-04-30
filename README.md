@@ -63,7 +63,7 @@ build/log-err.dat log of error trace
 
 The replay the log run the replay.sh script.
 
-> replay.sh
+> replay.sh build build/telosb  
 
 When the emulator opens press run.
 
