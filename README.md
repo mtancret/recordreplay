@@ -17,7 +17,9 @@ Prerequisites
 ----------
 
 Linux x86 or Mac OS X
+
 TinyOS 2.x  
+
 Make sure that TinyOS paths are configured correctly, for example, copy tinyos.sh from tools into main tinyos directory and execute
 
 > source tinyos.sh
@@ -54,7 +56,8 @@ After the light turns green press the user button two more times to erase the co
 The light will turn red and then green when flash is clear.
 Then press reset to restart the mote in record mode.
 
-Let the mote record for 30 seconds. Then enter command mode again press and release the reset button while holding down the user button. Start the collection script.
+Let the mote record for 30 seconds.
+Then enter command mode again press and release the reset button while holding down the user button. Start the collection script.
 
 > collect.py
 
