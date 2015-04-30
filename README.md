@@ -1,7 +1,7 @@
 recordreplay
 ==========
 
-Record and replay for TelosB motes, based on:
+This repository contains record and replay for TelosB motes, based on the following work.
 
 M. Tancreti, V. Sundaram, S. Bagchi, and P. Eugster.
 TARDIS: Software-Only System-Level Record and Replay in Wireless Sensor Networks.
@@ -16,14 +16,21 @@ The files in this repository are provided as is, for non-commercial purposes onl
 Prerequisites
 ----------
 
+Linux x86 or Mac OS X
 TinyOS 2.x  
-Copy tinyos.sh from tools into main tinyos directory and run
+Make sure that TinyOS paths are configured correctly, for example, copy tinyos.sh from tools into main tinyos directory and execute
+
 > source tinyos.sh
 
 Usage
 ----------
 
-Set up paths using the setup.sh script.
+Clone repository.
+
+> git clone git@github.com:mtancret/recordreplay.git
+> cd recordreplay
+
+Configure paths using the setup.sh script (you may want to place this in your shell startup files).
 
 > source setup.sh
 
@@ -33,27 +40,37 @@ Compile an example TinyOS application (requires TinyOS to be installed and confi
 > make-tinyos  
 
 It is normal to see "collect2: ld returned 1 exit status"
-Check the compile log file build/telosb/make\_tscribe.out for errors.
+Check the compile log file build/telosb/log.out for errors.
 
-Program the mote, MOTEDEV needs to be set to the mote's device location.
+Program the mote, MOTEDEV needs to be set to your mote's device location.
 
-> export MOTEDEV=/dev/tty.usbserial-XBTLWQL1  
-> install-tinyos  
+> export MOTEDEV=/dev/ttyUSB0
+> install-tinyos
 
+First make sure the contents of flash are clear by using the following procedure.
 To enter command mode press and release the reset button while holding down the user button.
-Now press and release the user button again to dump the contents of flash to the serial port.
-To capture the contents of flash run collect.py before pressing the user button.
+Now press and release the user button a second time to dump the contents of flash to the serial port.
+After the light turns green press the user button two more times to erase the contents of flash.
+The light will turn red and then green when flash is clear.
+Then press reset to restart the mote in record mode.
 
-> collect.py  
+Let the mote record for 30 seconds. Then enter command mode again press and release the reset button while holding down the user button. Start the collection script.
 
-Press and release the user button two more times to clear the flash.
-Exit command mode at any time by pressing reset.
+> collect.py
 
-Output of collect.py:  
+Press and release the user button a second time to dump the contents of flash to the serial port.
+
+The output of collect.py should be the following. 
 build/log-gen.dat log of generic register trace  
 build/log-state.dat log of state register trace  
 build/log-int.dat log of interrupt trace  
 build/log-err.dat log of error trace  
+
+The replay the log run the replay.sh script.
+
+> replay.sh
+
+When the emulator opens press run.
 
 Organization
 ----------
