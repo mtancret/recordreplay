@@ -29,8 +29,8 @@ Usage
 
 Clone repository.
 
-> git clone git@github.com:mtancret/recordreplay.git
-> cd recordreplay
+> git clone git@github.com:mtancret/recordreplay.git  
+> cd recordreplay  
 
 Configure paths using the setup.sh script (you may want to place this in your shell startup files).
 
@@ -46,8 +46,8 @@ Check the compile log file build/telosb/log.out for errors.
 
 Program the mote, MOTEDEV needs to be set to your mote's device location.
 
-> export MOTEDEV=/dev/ttyUSB0
-> install-tinyos
+> export MOTEDEV=/dev/ttyUSB0  
+> install-tinyos  
 
 First make sure the contents of flash are clear by using the following procedure.
 To enter command mode press and release the reset button while holding down the user button.
@@ -82,11 +82,9 @@ emulator - Modifed version of mspsim.
 targets - Code that is compiled into the target OS.  
 > common - Code that is used across all OSs.  
 > tinyos - TinyOS target specific code.  
-
 > > examples - Example TinyOS apps used for testing.  
 > > make - Scripts used to compile applications.  
-
 tools - Collection of usefull scripts for collecting and analysing data.  
 transpiler - Coverts C code into record instrumented code.  
-setup.sh - Script to set up environment.
+setup.sh - Script to set up environment.  
 
