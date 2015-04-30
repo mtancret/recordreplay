@@ -1,26 +1,18 @@
 recordreplay
 ==========
 
-This repository contains record and replay for TelosB motes, based on the following work.
+This repository contains record and replay for TelosB motes. It is based on the following work.
 
-M. Tancreti, V. Sundaram, S. Bagchi, and P. Eugster.
-TARDIS: Software-Only System-Level Record and Replay in Wireless Sensor Networks.
-To appear in the 14th International Conference on Information Processing in Sensor Networks (IPSN).
-ACM, 2015.
-
-License
-----------
-
-The files in this repository are provided as is, for non-commercial purposes only.
+Matthew Tancreti, Vinaitheerthan Sundaram, Saurabh Bagchi, and Patrick Eugster. TARDIS: Software-Only System-Level Record and Replay in Wireless Sensor Networks. In Proceedings of the 14th ACM/IEEE Conference on Information Processing in Sensor Networks (IPSN), 12 pages, Seattle, Washington, April 14-16, 2015.
 
 Prerequisites
 ----------
 
-Linux x86 or Mac OS X
+Linux x86 or Mac OS X  
 
 TinyOS 2.x  
 
-Make sure that TinyOS paths are configured correctly, for example, copy tinyos.sh from tools into main tinyos directory and execute
+Make sure that TinyOS paths are configured correctly, for example, copy tinyos.sh from tools into main tinyos directory and execute the following.
 
 > source tinyos.sh
 
@@ -89,4 +81,9 @@ targets - Code that is compiled into the target OS.
 tools - Collection of usefull scripts for collecting and analysing data.  
 transpiler - Coverts C code into record instrumented code.  
 setup.sh - Script to set up environment.  
+
+License
+----------
+
+The files in this repository are provided as is, for non-commercial purposes only.
 
