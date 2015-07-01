@@ -1,7 +1,7 @@
 recordreplay
 ==========
 
-This repository contains runtimes for record and replay for TelosB motes. It is currently only available for non-commercial use. It is based on the following work.
+This repository contains runtimes for record and replay of TelosB motes. It is currently available for non-commercial use only. It is based on the following work.
 
 Matthew Tancreti, Vinaitheerthan Sundaram, Saurabh Bagchi, and Patrick Eugster. TARDIS: Software-Only System-Level Record and Replay in Wireless Sensor Networks. In Proceedings of the 14th ACM/IEEE Conference on Information Processing in Sensor Networks (IPSN), 12 pages, Seattle, Washington, April 14-16, 2015.
 

@@ -1,3 +1,7 @@
+/**
+ * Author(s): Matthew Tan Creti
+ *            matthew.tancreti at gmail dot com
+ */
 #ifndef _TSCRIBE_CLOCK_H
 #define _TSCRIBE_CLOCK_H
 

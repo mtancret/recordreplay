@@ -1,3 +1,7 @@
+/**
+ * Author(s): Matthew Tan Creti
+ *            matthew.tancreti at gmail dot com
+ */
 #include <stdio.h>
 #include "tscribe.h"
 #include "tscribe-bit-pack.h"

@@ -1,3 +1,7 @@
+/**
+ * Author(s): Matthew Tan Creti
+ *            matthew.tancreti at gmail dot com
+ */
 #include "tscribe.h"
 
 module TscribeP {

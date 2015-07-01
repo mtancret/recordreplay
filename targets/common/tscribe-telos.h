@@ -1,3 +1,7 @@
+/**
+ * Author(s): Matthew Tan Creti
+ *            matthew.tancreti at gmail dot com
+ */
 #ifndef _TELOS_H
 #define _TELOS_H
 
